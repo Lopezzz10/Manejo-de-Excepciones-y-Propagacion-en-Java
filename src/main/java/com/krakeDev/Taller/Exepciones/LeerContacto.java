@@ -12,9 +12,9 @@ public class LeerContacto {
 
 	private static final Logger log = LoggerFactory.getLogger(LeerContacto.class);
 
-	public static void main(String[] args) {
+	public static void leerContacto() {
 
-		BufferedReader lector = null; 
+		BufferedReader lector = null;
 
 		try {
 			FileReader lectorDeArchivo = new FileReader("contactos.txt");
@@ -24,13 +24,13 @@ public class LeerContacto {
 				log.info(lector.readLine());
 			}
 
-			log.info("Archivo leido correctamente"); 
+			log.info("Archivo leido correctamente");
 
 		} catch (FileNotFoundException e) {
-			log.error("No se encontro el archivo: ", e.getMessage());
+			log.error("No se encontro el archivo: {}", e.getMessage());
 
 		} catch (IOException e) {
-			log.error("Error al leer el archivo: ", e.getMessage());
+			log.error("Error al leer el archivo: {}", e.getMessage());
 
 		} finally {
 			try {
@@ -38,7 +38,7 @@ public class LeerContacto {
 					lector.close();
 				}
 			} catch (IOException e) {
-				log.error("Error al cerrar el archivo: ", e.getMessage());
+				log.error("Error al cerrar el archivo: {}", e.getMessage());
 			}
 		}
 	}

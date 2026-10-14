@@ -10,15 +10,15 @@ public class GuardarContacto {
 
 	private static final Logger log = LoggerFactory.getLogger(GuardarContacto.class);
 
-	public static void main(String[] args) {
+	public static void guardarContacto(String nombre, String apellido, String telefono) {
 
 		FileWriter escritor = null;
 
 		try {
-			escritor = new FileWriter("contactos.txt", true); 
-			escritor.write("Nombre: Maria\n");
-			escritor.write("Apellido: Gomez\n");
-			escritor.write("Telefono: 0981234567\n");
+			escritor = new FileWriter("contactos.txt", true);
+			escritor.write("Nombre: " + nombre + "\n"); 
+			escritor.write("Apellido: " + apellido + "\n");
+			escritor.write("Telefono: " + telefono + "\n"); 
 
 			log.info("Archivo creado con exito");
 		} catch (IOException e) {
