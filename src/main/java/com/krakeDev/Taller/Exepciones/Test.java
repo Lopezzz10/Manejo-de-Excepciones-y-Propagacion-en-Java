@@ -20,7 +20,7 @@ public class Test {
 			log.info("Proceso completado correctamente");
 
 		} catch (IllegalArgumentException e) {
-			log.error("Telefono invalido: ", e.getMessage());
+			log.error("Telefono invalido: {}", e.getMessage()); 
 		}
 	}
 

@@ -22,14 +22,14 @@ public class GuardarContacto {
 
 			log.info("Archivo creado con exito");
 		} catch (IOException e) {
-			log.error("Ocurrio un error: ", e.getMessage());
+			log.error("Ocurrio un error: {}", e.getMessage()); 
 		} finally {
 			try {
 				if (escritor != null) {
 					escritor.close();
 				}
 			} catch (IOException e) {
-				log.error("Error al cerrar el archivo: ", e.getMessage());
+				log.error("Error al cerrar el archivo: {}", e.getMessage());
 			}
 		}
 	}
