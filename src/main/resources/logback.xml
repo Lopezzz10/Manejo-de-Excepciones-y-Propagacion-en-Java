@@ -7,7 +7,6 @@
         </encoder>
     </appender>
 
-    <!-- CAMBIADO: de ERROR a INFO para que se vean los log.info -->
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
     </root>
