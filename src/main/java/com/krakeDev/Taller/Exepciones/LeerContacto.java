@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,16 +14,25 @@ public class LeerContacto {
 
 	private static final Logger log = LoggerFactory.getLogger(LeerContacto.class);
 
-	public static void leerContacto() {
+	private static final String ARCHIVO = "contactos.txt";
 
+	public static List<String> leerContacto() {
+		return leerContacto(ARCHIVO);
+	}
+
+	public static List<String> leerContacto(String ruta) {
+
+		List<String> lineas = new ArrayList<>();
 		BufferedReader lector = null;
 
 		try {
-			FileReader lectorDeArchivo = new FileReader("contactos.txt");
+			FileReader lectorDeArchivo = new FileReader(ruta);
 			lector = new BufferedReader(lectorDeArchivo);
 
-			for (int i = 0; i < 3; i++) {
-				log.info(lector.readLine());
+			String linea;
+			while ((linea = lector.readLine()) != null) { // MODIFICADO: lee hasta el final del archivo
+				log.info(linea);
+				lineas.add(linea);
 			}
 
 			log.info("Archivo leido correctamente");
@@ -41,6 +52,8 @@ public class LeerContacto {
 				log.error("Error al cerrar el archivo: {}", e.getMessage());
 			}
 		}
+
+		return lineas;
 	}
 
 }

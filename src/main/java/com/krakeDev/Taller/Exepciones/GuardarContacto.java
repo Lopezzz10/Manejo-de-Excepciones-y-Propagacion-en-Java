@@ -10,19 +10,27 @@ public class GuardarContacto {
 
 	private static final Logger log = LoggerFactory.getLogger(GuardarContacto.class);
 
-	public static void guardarContacto(String nombre, String apellido, String telefono) {
+	private static final String ARCHIVO = "contactos.txt";
+
+	public static boolean guardarContacto(String nombre, String apellido, String telefono) {
+		return guardarContacto(ARCHIVO, nombre, apellido, telefono);
+	}
+
+	public static boolean guardarContacto(String ruta, String nombre, String apellido, String telefono) {
 
 		FileWriter escritor = null;
+		boolean guardado = false;
 
 		try {
-			escritor = new FileWriter("contactos.txt", true);
-			escritor.write("Nombre: " + nombre + "\n"); 
+			escritor = new FileWriter(ruta, true);
+			escritor.write("Nombre: " + nombre + "\n");
 			escritor.write("Apellido: " + apellido + "\n");
-			escritor.write("Telefono: " + telefono + "\n"); 
+			escritor.write("Telefono: " + telefono + "\n");
 
+			guardado = true;
 			log.info("Archivo creado con exito");
 		} catch (IOException e) {
-			log.error("Ocurrio un error: {}", e.getMessage()); 
+			log.error("Ocurrio un error: {}", e.getMessage());
 		} finally {
 			try {
 				if (escritor != null) {
@@ -32,6 +40,8 @@ public class GuardarContacto {
 				log.error("Error al cerrar el archivo: {}", e.getMessage());
 			}
 		}
+
+		return guardado;
 	}
 
 }

@@ -9,18 +9,28 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		String telefono = "0981234567";
+		// Escenario 1: telefono valido -> guarda y lee todos los contactos
+		procesar("Maria", "Gomez", "0981234567");
 
+		// Escenario 2: telefono invalido -> IllegalArgumentException controlada
+		procesar("Juan", "Perez", "123");
+
+		// Escenario 3: archivo inexistente -> FileNotFoundException controlada
+		log.info("Leyendo un archivo que no existe");
+		LeerContacto.leerContacto("no_existe.txt");
+	}
+
+	private static void procesar(String nombre, String apellido, String telefono) {
 		try {
 			ValidarContacto.validarTelefono(telefono);
 
-			GuardarContacto.guardarContacto("Maria", "Gomez", telefono);
+			GuardarContacto.guardarContacto(nombre, apellido, telefono);
 			LeerContacto.leerContacto();
 
 			log.info("Proceso completado correctamente");
 
 		} catch (IllegalArgumentException e) {
-			log.error("Telefono invalido: {}", e.getMessage()); 
+			log.error("Telefono invalido: {}", e.getMessage());
 		}
 	}
 
